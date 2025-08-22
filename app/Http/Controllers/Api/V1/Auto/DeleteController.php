@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\Auto;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auto;
 use Illuminate\Http\Response;
 use OpenApi\Attributes as OA;
+
 class DeleteController extends Controller
 {
     #[

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\ModelAuto;
 
 use App\Dto\Response\Auto\ItemDto;
@@ -30,7 +32,7 @@ class GetController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         return response()->json(GetAllResponseDto::from([
-            'data' => ItemDto::collect(ModelAuto::all())
+            'data' => ItemDto::collect(ModelAuto::all()),
         ]));
     }
 }

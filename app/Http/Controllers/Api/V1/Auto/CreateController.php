@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\Auto;
 
 use App\Dto\Request\Auto\CreateDto;
@@ -31,16 +33,16 @@ class CreateController extends Controller
     ]
     public function __invoke(CreateDto $data): JsonResponse
     {
-        $mark=MarkAuto::query()
+        $mark = MarkAuto::query()
             ->firstOrCreate([
-                'name' => $data->mark
+                'name' => $data->mark,
             ]);
-        $model=ModelAuto::query()->firstOrCreate([
+        $model = ModelAuto::query()->firstOrCreate([
             'name' => $data->model,
-            'mark_id' => $mark->id
+            'mark_id' => $mark->id,
         ]);
 
-        $auto=Auto::query()->firstOrCreate([
+        $auto = Auto::query()->firstOrCreate([
             'mark_id' => $mark->id,
             'model_id' => $model->id,
             'user_id' => $data->user_id ?? null,

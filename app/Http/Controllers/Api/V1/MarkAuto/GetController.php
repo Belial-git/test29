@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\MarkAuto;
 
 use App\Dto\Response\MarkAuto\GetAllResponseDto;
@@ -9,7 +11,6 @@ use App\Models\MarkAuto;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use OpenApi\Attributes as OA;
-use Spatie\LaravelData\DataCollection;
 
 class GetController extends Controller
 {
@@ -31,7 +32,7 @@ class GetController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         return response()->json(GetAllResponseDto::from([
-            'data' => ItemDto::collect(MarkAuto::all())
+            'data' => ItemDto::collect(MarkAuto::all()),
         ]));
     }
 }

@@ -10,12 +10,12 @@ Route::get('/', function () {
 
 Route::prefix('autos')
     ->name('autos.')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('/', App\Http\Controllers\Api\V1\Auto\GetController::class)
             ->name('autos-get');
         Route::post('/', App\Http\Controllers\Api\V1\Auto\CreateController::class)
             ->name('auto-create');
-        Route::prefix('{id}')->group(function () {
+        Route::prefix('{id}')->group(function (): void {
             Route::patch('/', App\Http\Controllers\Api\V1\Auto\UpdateController::class)
                 ->name('auto-update');
             Route::delete('/', App\Http\Controllers\Api\V1\Auto\DeleteController::class)
@@ -24,13 +24,13 @@ Route::prefix('autos')
     });
 Route::prefix('marks')
     ->name('marks.')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('/', App\Http\Controllers\Api\V1\MarkAuto\GetController::class)
             ->name('marks-get');
     });
 Route::prefix('models')
     ->name('models.')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('/', App\Http\Controllers\Api\V1\ModelAuto\GetController::class)
             ->name('marks-get');
     });

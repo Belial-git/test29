@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Api\V1\Auto;
 
-use App\Dto\Request\GetByUserId;
 use App\Dto\Response\Auto\GetAllResponseDto;
 use App\Dto\Response\Auto\ItemDto;
 use App\Http\Controllers\Controller;
@@ -42,20 +43,20 @@ class GetController extends Controller
     {
         $id = $request->query('id');
 
-        if ($id){
+        if ($id) {
             /** @var User $user */
-            $user=User::query()
+            $user = User::query()
                 ->with(['autos'])
                 ->findOrFail($id);
-            $data=$user->autos;
+            $data = $user->autos;
 
             return response()->json(GetAllResponseDto::from([
-                'data' => ItemDto::collect($data)
+                'data' => ItemDto::collect($data),
             ]));
         }
 
         return response()->json(GetAllResponseDto::from([
-            'data' => ItemDto::collect(Auto::all())
+            'data' => ItemDto::collect(Auto::all()),
         ]));
     }
 }
