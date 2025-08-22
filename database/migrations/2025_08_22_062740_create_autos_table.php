@@ -30,7 +30,7 @@ return new class extends Migration {
                 ->nullable()
                 ->default(null)
                 ->comment('Цвет');
-            $table->decimal('mileage')
+            $table->float('mileage')
                 ->nullable()
                 ->default(null)
                 ->comment('Год выпуска');

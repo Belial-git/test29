@@ -8,32 +8,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('Autos')
+Route::prefix('autos')
     ->name('autos.')
     ->group(function () {
         Route::get('/', App\Http\Controllers\Api\V1\Auto\GetController::class)
-            ->name('autos.get');
+            ->name('autos-get');
         Route::post('/', App\Http\Controllers\Api\V1\Auto\CreateController::class)
-            ->name('auto.create');
-        Route::prefix('{id}')
-            ->group(function () {
-                Route::get('/', App\Http\Controllers\Api\V1\Auto\GetController::class)
-                    ->name('auto.get');
-                Route::patch('/', App\Http\Controllers\Api\V1\Auto\UpdateController::class)
-                    ->name('auto.update');
-                Route::delete('/', App\Http\Controllers\Api\V1\Auto\DeleteController::class)
-                    ->name('auto.delete');
-            });
+            ->name('auto-create');
+        Route::prefix('{id}')->group(function () {
+            Route::patch('/', App\Http\Controllers\Api\V1\Auto\UpdateController::class)
+                ->name('auto-update');
+            Route::delete('/', App\Http\Controllers\Api\V1\Auto\DeleteController::class)
+                ->name('auto-delete');
+        });
     });
-Route::prefix('Marks')
+Route::prefix('marks')
     ->name('marks.')
     ->group(function () {
         Route::get('/', App\Http\Controllers\Api\V1\MarkAuto\GetController::class)
-            ->name('marks.get');
+            ->name('marks-get');
     });
-Route::prefix('Models')
+Route::prefix('models')
     ->name('models.')
     ->group(function () {
         Route::get('/', App\Http\Controllers\Api\V1\ModelAuto\GetController::class)
-            ->name('marks.get');
+            ->name('marks-get');
     });

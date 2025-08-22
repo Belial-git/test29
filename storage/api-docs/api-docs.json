@@ -1,0 +1,326 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "test29 api",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/autos": {
+            "get": {
+                "tags": [
+                    "Auto"
+                ],
+                "description": "Получить автомобили",
+                "operationId": "Get autos",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "user ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAutoGetAllResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Auto"
+                ],
+                "description": "Создать автомобиль",
+                "operationId": "Create auto",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestAutoCreateDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAutoItemDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/autos/{id}": {
+            "delete": {
+                "tags": [
+                    "Auto"
+                ],
+                "description": "Удалить автомобиль",
+                "operationId": "Delete auto",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Auto ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Auto"
+                ],
+                "description": "Изменить данные автомобиля",
+                "operationId": "update autos",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Auto ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RequestAutoUpdateDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseAutoItemDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/marks": {
+            "get": {
+                "tags": [
+                    "Marks"
+                ],
+                "description": "Получить список марок",
+                "operationId": "Get marks",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseMarkAutoGetAllResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/models": {
+            "get": {
+                "tags": [
+                    "Models"
+                ],
+                "description": "Получить список моделей",
+                "operationId": "Get models",
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseModelAutoGetAllResponseDto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "RequestAutoCreateDto": {
+                "properties": {
+                    "model": {
+                        "description": "Название модели",
+                        "type": "string"
+                    },
+                    "mark": {
+                        "description": "Название марки",
+                        "type": "string"
+                    },
+                    "year_of_issue": {
+                        "description": "Год выпуска",
+                        "type": "string",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "mileage": {
+                        "description": "Пробег",
+                        "type": "number",
+                        "format": "float",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "user_id": {
+                        "description": "ИД пользователя",
+                        "type": "integer",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "color": {
+                        "description": "Цвет",
+                        "type": "string",
+                        "default": null,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "RequestAutoUpdateDto": {
+                "properties": {
+                    "model": {
+                        "description": "Название модели",
+                        "type": "string"
+                    },
+                    "mark": {
+                        "description": "Название марки",
+                        "type": "string"
+                    },
+                    "year_of_issue": {
+                        "description": "Год выпуска",
+                        "type": "number",
+                        "format": "float",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "mileage": {
+                        "description": "Пробег",
+                        "type": "string",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "user_id": {
+                        "description": "ИД пользователя",
+                        "type": "integer",
+                        "default": null,
+                        "nullable": true
+                    },
+                    "color": {
+                        "description": "Цвет",
+                        "type": "string",
+                        "default": null,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "RequestByUserIdDto": {
+                "properties": {
+                    "user_id": {
+                        "description": "ИД пользователя",
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "ResponseAutoGetAllResponseDto": {
+                "properties": {
+                    "data": {
+                        "description": "ItemDto>",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseAutoItemDto"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ResponseAutoItemDto": {},
+            "ResponseMarkAutoGetAllResponseDto": {
+                "properties": {
+                    "data": {
+                        "description": "ItemDto>",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseMarkAutoItemDto"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ResponseMarkAutoItemDto": {},
+            "ResponseModelAutoGetAllResponseDto": {
+                "properties": {
+                    "data": {
+                        "description": "ItemDto>",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ResponseModelAutoItemDto"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ResponseModelAutoItemDto": {}
+        },
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auto",
+            "description": "Auto"
+        },
+        {
+            "name": "Marks",
+            "description": "Marks"
+        },
+        {
+            "name": "Models",
+            "description": "Models"
+        }
+    ]
+}
